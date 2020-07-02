@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:receipe_app/screens/category_meal_screen.dart';
 
 class CategoryItem extends StatelessWidget {
+  final String id;
   final String title;
   final Color color;
 
-  CategoryItem(this.title, this.color);
+  CategoryItem(this.id,this.title, this.color);
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,7 @@ class CategoryItem extends StatelessWidget {
         //  Navigator.push(
         //     context, MaterialPageRoute(builder:(ctx) => CategoryMealScreen()));
         Navigator.pushNamed(context, CategoryMealScreen.routeName,
-            arguments: {'title': title});
+            arguments: {'id': id, 'title': title});
       },
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).primaryColor,
