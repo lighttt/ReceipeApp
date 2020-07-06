@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:receipe_app/screens/bottom_bar_screen.dart';
+import 'package:receipe_app/screens/filter_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   @override
@@ -18,13 +19,18 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.restaurant),
             title: Text("Meals"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(
+                  context, BottomBarScreen.routeName);
+            },
           ),
           Divider(),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text("Filters"),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushReplacementNamed(context, FilterScreen.routeName);
+            },
           ),
           Divider(),
         ],

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:receipe_app/dummy_data.dart';
-import 'package:receipe_app/widgets/app_drawer.dart';
 import 'package:receipe_app/widgets/category_item.dart';
 
 class CategoryOverviewScreen extends StatelessWidget {

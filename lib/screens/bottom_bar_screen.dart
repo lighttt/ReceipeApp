@@ -5,6 +5,8 @@ import 'package:receipe_app/widgets/app_drawer.dart';
 import 'favourites_screen.dart';
 
 class BottomBarScreen extends StatefulWidget {
+  static const String routeName = "/bottom_bar_screen";
+
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
