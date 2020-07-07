@@ -23,7 +23,7 @@ class _CategoryMealScreenState extends State<CategoryMealScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     final routeArgs = ModalRoute.of(context).settings.arguments as Map;
-     title = routeArgs["title"];
+    title = routeArgs["title"];
     id = routeArgs["id"];
     categoryMeals =
         widget.availableMeals.where((meal) => meal.categories.contains(id)).toList();

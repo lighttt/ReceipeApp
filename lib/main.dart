@@ -25,7 +25,9 @@ class _MyAppState extends State<MyApp> {
   };
 
   List<Meal> _availableMeal = DUMMY_MEALS;
+  List<Meal> _favouriteMeals = [];
 
+// setting filters to the dummy meals
   void _setFilter(Map<String, bool> filterData) {
     setState(() {
       _filters = filterData;
@@ -47,6 +49,31 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+  // adding or removing meals from favourite list
+  void _toggleFavourite(String mealId) {
+    final existingIndex =
+        _favouriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      //favourites ho
+      //favourites bata hataunu
+      setState(() {
+        _favouriteMeals.removeAt(existingIndex);
+      });
+    } else {
+      //not favourites
+      //favourites ma add garnu paryo
+      setState(() {
+        _favouriteMeals
+            .add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+      });
+    }
+  }
+
+  //to know if an item is favourite or not
+  bool isMealFavourite(String id) {
+    return _favouriteMeals.any((meal) => meal.id == id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -62,10 +89,12 @@ class _MyAppState extends State<MyApp> {
               title: TextStyle(fontSize: 24, fontFamily: "Roboto"))),
       initialRoute: BottomBarScreen.routeName,
       routes: {
-        BottomBarScreen.routeName: (ctx) => BottomBarScreen(),
+        BottomBarScreen.routeName: (ctx) => BottomBarScreen(_favouriteMeals),
         FilterScreen.routeName: (ctx) => FilterScreen(_filters, _setFilter),
-        CategoryMealScreen.routeName: (ctx) => CategoryMealScreen(_availableMeal),
-        MealDetailsScreen.routeName: (ctx) => MealDetailsScreen(),
+        CategoryMealScreen.routeName: (ctx) =>
+            CategoryMealScreen(_availableMeal),
+        MealDetailsScreen.routeName: (ctx) =>
+            MealDetailsScreen(_toggleFavourite,isMealFavourite),
       },
     );
   }

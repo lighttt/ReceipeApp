@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:receipe_app/models/meal.dart';
 import 'package:receipe_app/screens/category_overview_screen.dart';
 import 'package:receipe_app/widgets/app_drawer.dart';
 
@@ -7,21 +8,30 @@ import 'favourites_screen.dart';
 class BottomBarScreen extends StatefulWidget {
   static const String routeName = "/bottom_bar_screen";
 
+  final List<Meal> favourites;
+  BottomBarScreen(this.favourites);
+
   @override
   _BottomBarScreenState createState() => _BottomBarScreenState();
 }
 
 class _BottomBarScreenState extends State<BottomBarScreen> {
-  final List<Map<String, Object>> _pages = [
-    {
-      'page': CategoryOverviewScreen(),
-      'title': "Categories",
-    },
-    {
-      'page': FavouritesScreen(),
-      'title': "Favourites",
-    }
-  ];
+  List<Map<String, Object>> _pages = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _pages = [
+      {
+        'page': CategoryOverviewScreen(),
+        'title': "Categories",
+      },
+      {
+        'page': FavouritesScreen(widget.favourites),
+        'title': "Favourites",
+      }
+    ];
+  }
 
   int _selectedPageIndex = 0;
 
